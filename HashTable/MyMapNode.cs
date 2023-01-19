@@ -77,11 +77,27 @@ namespace HashTable
                 Console.WriteLine($"'{arr[i]}' is Repeated {count} times");
             }
             Console.Write($"\nTotal Words are : {countWords} \n");
+
         }
-    }
-    public struct KeyValue<K, V>
-    {
-        public K Key { get; set; }
-        public V Value { get; set; }
+        public void Remove(K key)
+        {
+            int index = GetArrayPosition(key);
+            KeyValue<K, V> foundItem = default(KeyValue<K, V>);
+            foreach (KeyValue<K, V> item in items[index])
+            {
+                if (item.Key.Equals(key))
+                {
+                    items[index].Remove(item);
+                    break;
+                }
+            }
+
+        }
+
+        public struct KeyValue<K, V>
+        {
+            public K Key { get; set; }
+            public V Value { get; set; }
+        }
     }
 }
